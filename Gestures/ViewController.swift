@@ -27,6 +27,9 @@ class ViewController: UIViewController {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.singleTap))
         imaggView.addGestureRecognizer(guesture)
         
+        let gp = UIPinchGestureRecognizer(target: self, action: #selector(ViewController.pinchImg(_:)))
+        imaggView.addGestureRecognizer(gp)
+        
     }
     @objc func singleTap() {
         if imaggView.image == self.img1{
@@ -34,6 +37,10 @@ class ViewController: UIViewController {
         }else{
             imaggView.image = img1
         }
+    }
+    @objc func pinchImg(_ recognizer:UIPinchGestureRecognizer) {
+        recognizer.view?.transform = (recognizer.view?.transform.scaledBy(x: recognizer.scale, y: recognizer.scale))!
+        recognizer.scale=1
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
