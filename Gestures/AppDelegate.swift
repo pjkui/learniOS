@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let addEventIcon = UIApplicationShortcutIcon(type: .add)
+        let audoEventIcon = UIApplicationShortcutIcon(type: .audio)
+        let pauseEventIcon = UIApplicationShortcutIcon(type: .pause)
+        
+        let addEvent = UIApplicationShortcutItem(type: "com.pjkui.add", localizedTitle: "添加会员", localizedSubtitle: "Add Member", icon: addEventIcon, userInfo: nil)
+        let audioEvent = UIApplicationShortcutItem(type: "com.pjkui.audio", localizedTitle: "播放音乐", localizedSubtitle: "Play Music", icon: audoEventIcon, userInfo: nil)
+        let pauseEvent = UIApplicationShortcutItem(type: "com.pjkui.pause", localizedTitle: "暂停音乐", localizedSubtitle: "Pause Music", icon: pauseEventIcon, userInfo: nil)
+        let shortItems = [addEvent,audioEvent,pauseEvent]
+        application.shortcutItems = shortItems
         return true
     }
 
@@ -39,6 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if shortcutItem.type == "com.pjkui.add" {
+            print("add ...")
+        }else if shortcutItem.type == "com.pjkui.audio"{
+            print("audio ...  ")
+        }else if shortcutItem.type == "com.pjkui.pause"{
+            print("pause....")
+        }
     }
 
 
